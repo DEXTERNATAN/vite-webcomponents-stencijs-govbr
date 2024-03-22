@@ -8,9 +8,6 @@ function App() {
   return (
     <>
       <div>
-        <h2>Formulario Padrao do React</h2>
-        <hr />
-        <FormularioReact />
         <hr />
         <h2>Formulario com react e web componentes</h2>
         <hr />
