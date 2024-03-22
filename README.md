@@ -1,4 +1,4 @@
-# React + TypeScript + Vite
+# React + Web Components + Vite
 
 Este projeto visa mostrar o uso dos web componentes do dsgov que foram construidos com stenciljs.
 
