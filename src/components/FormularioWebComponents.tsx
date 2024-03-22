@@ -8,8 +8,11 @@ const FormularioWebComponents = () => {
   const [formSend, setFormSend] = useState(false);
 
   const handleSubmit = (event: any) => {
-    event.preventDefault();
+    event.preventDefault(); 
 
+    // Call api to register data
+    console.log('Formulario enviado:', 'Nome:', nome, 'Email:', email, 'Senha:', senha)
+    
     setFormSend(true);
   };
 
