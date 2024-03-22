@@ -1,6 +1,5 @@
 import './App.css';
 import '@govbr-ds/core/dist/core.min.css';
-import FormularioReact from './components/FormularioReact';
 import FormularioWebComponents from './components/FormularioWebComponents';
 import ListComponents from './components/ListComponents';
 
