@@ -2,28 +2,17 @@ import { useState } from 'react';
 import { BrButton, BrInput } from '@govbr-ds-testing/webcomponents-react';
 
 const FormularioWebComponents = () => {
-  const [nome, setNome] = useState('Natanael');
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
+  const [nome, setNome] = useState('Natanael');
   const [formSend, setFormSend] = useState(false);
 
   const handleSubmit = (event: any) => {
     event.preventDefault();
-    console.log(
-      'Formulario enviado:',
-      'Nome:',
-      nome,
-      'Email:',
-      email,
-      'Senha:',
-      senha
-    );
+
     setFormSend(true);
   };
 
-  const handleValueChange = (event: any) => {
-    console.log('teste', event);
-  };
   return (
     <div className="App">
       {formSend === true && (
@@ -62,7 +51,7 @@ const FormularioWebComponents = () => {
             id="email"
             name="email"
             value={email}
-            onValueChange={(event) => setNome(event.target.value)}
+            onValueChange={(event) => setEmail(event.target.value)}
             // onChange={(event) => {
             //   setEmail(event)
             // }}
@@ -77,7 +66,7 @@ const FormularioWebComponents = () => {
             id="senha"
             name="senha"
             value={senha}
-            onValueChange={(event) => setNome(event.target.value)}
+            onValueChange={(event) => setSenha(event.target.value)}
             // onChange={(event) => {
             //   setSenha(event.target.value)
             // }}

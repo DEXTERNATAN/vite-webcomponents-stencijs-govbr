@@ -8,11 +8,11 @@ function App() {
     <>
       <div>
         <hr />
-        <h2>Formulario com react e web componentes</h2>
+        <h2>Formulario com react e web componentes com stenciljs</h2>
         <hr />
         <FormularioWebComponents />
         <hr />
-        <h2>Teste dos novos web componentes - Individualmente</h2>
+        <h2>Teste dos novos web componentes com stenciljs - Individualmente</h2>
         <hr />
         <ListComponents />
       </div>
