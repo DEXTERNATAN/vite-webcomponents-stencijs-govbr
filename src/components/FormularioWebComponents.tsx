@@ -1,36 +1,71 @@
-import { useState } from 'react';
-import { BrButton, BrInput } from '@govbr-ds-testing/webcomponents-react';
+import React, { useState } from "react";
+import { BrButton, BrInput } from "@govbr-ds-testing/webcomponents-react";
+import MessageValidation from "./MessageValition";
 
-const FormularioWebComponents = () => {
-  const [email, setEmail] = useState('');
-  const [senha, setSenha] = useState('');
-  const [nome, setNome] = useState('Natanael');
+const FormularioWebComponentsReactHook = () => {
+  const [email, setEmail] = useState("");
+  const [senha, setSenha] = useState("");
+  const [nome, setNome] = useState("");
+  const [formErrors, setFormErrors] = useState({
+    nome: "",
+    email: "",
+    senha: "",
+  });
   const [formSend, setFormSend] = useState(false);
 
-  const handleSubmit = (event: any) => {
-    event.preventDefault(); 
+  const validateForm = () => {
+    let errors = { nome: "", email: "", senha: "" };
+    let isValid = true;
 
-    // Call api to register data
-    console.log('Formulario enviado:', 'Nome:', nome, 'Email:', email, 'Senha:', senha)
-    
-    setFormSend(true);
+    if (nome.trim() === "") {
+      errors.nome = "Campo obrigatório";
+      isValid = false;
+    }
+
+    if (email.trim() === "") {
+      errors.email = "Campo obrigatório";
+      isValid = false;
+    }
+
+    if (senha.trim() === "") {
+      errors.senha = "Campo obrigatório";
+      isValid = false;
+    }
+
+    setFormErrors(errors);
+    return isValid;
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    if (validateForm()) {
+      // Call API to register data
+      console.log(
+        "Formulario enviado:",
+        "Nome:",
+        nome,
+        "Email:",
+        email,
+        "Senha:",
+        senha
+      );
+
+      setFormSend(true);
+    }
   };
 
   return (
     <div className="App">
       {formSend === true && (
         <>
-          {/* <br-message state="success" show-icon> */}
           Formulario enviado com sucesso!
-          {/* </br-message>
-          <br-message state="info" show-icon> */}
           <div>
             <h5>Dados enviados:</h5>
             <p>Nome: {nome}</p>
             <p>Email: {email}</p>
             <p>Senha: {senha}</p>
           </div>
-          {/* </br-message> */}
         </>
       )}
 
@@ -42,10 +77,12 @@ const FormularioWebComponents = () => {
             id="nome"
             name="nome"
             value={nome}
-            onValueChange={(event) => setNome(event.target.value)}
+            onChange={(event) => setNome(event.target.value)}
             required
+            danger={formErrors.nome ? true : false}
           />
-          {`Nome: ${nome}`}
+
+          {formErrors.nome && <MessageValidation message={formErrors.nome} />}
         </div>
         <div>
           <label htmlFor="email">Email:</label>
@@ -54,13 +91,11 @@ const FormularioWebComponents = () => {
             id="email"
             name="email"
             value={email}
-            onValueChange={(event) => setEmail(event.target.value)}
-            // onChange={(event) => {
-            //   setEmail(event)
-            // }}
+            onChange={(event) => setEmail(event.target.value)}
             required
+            danger={formErrors.nome ? true : false}
           />
-          {`E-mail: ${email}`}
+          <MessageValidation message={formErrors.email} />
         </div>
         <div>
           <label htmlFor="senha">Senha:</label>
@@ -69,38 +104,27 @@ const FormularioWebComponents = () => {
             id="senha"
             name="senha"
             value={senha}
-            onValueChange={(event) => setSenha(event.target.value)}
-            // onChange={(event) => {
-            //   setSenha(event.target.value)
-            // }}
+            onChange={(event) => setSenha(event.target.value)}
             required
+            danger={formErrors.nome ? true : false}
           />
-          {`Senha: ${senha}`}
+          <MessageValidation message={formErrors.senha} />
         </div>
         <div
           style={{
-            display: 'flex',
-            justifyContent: 'right',
-            marginTop: '10px',
+            display: "flex",
+            justifyContent: "right",
+            marginTop: "10px",
           }}
         >
           <BrButton
-            type="submit"
+            type="reset"
             emphasis="secondary"
-            id="limpar"
-            style={{
-              marginRight: 10,
-            }}
+            style={{ marginRight: 10 }}
           >
             Cancelar
           </BrButton>
-          <BrButton
-            className="mr-1"
-            id="send"
-            type="submit"
-            emphasis="primary"
-            onClick={handleSubmit}
-          >
+          <BrButton type="submit" emphasis="primary" onClick={handleSubmit}>
             Enviar Formulário
           </BrButton>
         </div>
@@ -109,4 +133,4 @@ const FormularioWebComponents = () => {
   );
 };
 
-export default FormularioWebComponents;
+export default FormularioWebComponentsReactHook;

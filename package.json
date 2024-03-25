@@ -11,9 +11,13 @@
   },
   "dependencies": {
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-hook-form": "^7.51.1"
   },
   "devDependencies": {
+    "@govbr-ds-testing/webcomponents": "^1.22.2",
+    "@govbr-ds-testing/webcomponents-react": "^1.22.2",
+    "@govbr-ds/core": "^3.5.1",
     "@types/react": "^18.2.66",
     "@types/react-dom": "^18.2.22",
     "@typescript-eslint/eslint-plugin": "^7.2.0",
@@ -23,9 +27,6 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.6",
     "typescript": "^5.2.2",
-    "vite": "^5.2.0",
-    "@govbr-ds/core": "^3.5.1",
-    "@govbr-ds-testing/webcomponents": "^1.22.2",
-    "@govbr-ds-testing/webcomponents-react": "^1.22.2"
+    "vite": "^5.2.0"
   }
 }
