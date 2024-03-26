@@ -14,9 +14,9 @@ const FormularioWebComponentsReactHook = () => {
   const [formSend, setFormSend] = useState(false);
 
   const validateForm = () => {
-    let errors = { nome: "", email: "", senha: "" };
+    const errors = { nome: "", email: "", senha: "" };
     let isValid = true;
-
+    console.log(errors, isValid);
     if (nome.trim() === "") {
       errors.nome = "Campo obrigatório";
       isValid = false;
@@ -38,7 +38,7 @@ const FormularioWebComponentsReactHook = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-
+    console.log("Formulario enviado", nome, email, senha);
     if (validateForm()) {
       // Call API to register data
       console.log(
@@ -58,28 +58,43 @@ const FormularioWebComponentsReactHook = () => {
   return (
     <div className="App">
       {formSend === true && (
-        <>
-          Formulario enviado com sucesso!
+        <div>
+          <div
+            style={{
+              color: "white",
+              fontSize: "12px",
+              marginTop: "5px",
+              border: "1px solid green",
+              padding: "10px",
+              backgroundColor: "green",
+              borderRadius: "5px",
+            }}
+          >
+            Formulario enviado com sucesso!
+          </div>
           <div>
             <h5>Dados enviados:</h5>
             <p>Nome: {nome}</p>
             <p>Email: {email}</p>
             <p>Senha: {senha}</p>
           </div>
-        </>
+        </div>
       )}
 
       <form onSubmit={handleSubmit}>
         <div>
           <label htmlFor="nome">Nome:</label>
           <BrInput
-            type="text"
+            required
             id="nome"
+            type="text"
             name="nome"
             value={nome}
-            onChange={(event) => setNome(event.target.value)}
-            required
             danger={formErrors.nome ? true : false}
+            onValueChange={(event) => [
+              setNome(event.target.value),
+              validateForm(),
+            ]}
           />
 
           {formErrors.nome && <MessageValidation message={formErrors.nome} />}
@@ -87,28 +102,34 @@ const FormularioWebComponentsReactHook = () => {
         <div>
           <label htmlFor="email">Email:</label>
           <BrInput
-            type="email"
+            required
             id="email"
+            type="email"
             name="email"
             value={email}
-            onChange={(event) => setEmail(event.target.value)}
-            required
-            danger={formErrors.nome ? true : false}
+            danger={formErrors.email ? true : false}
+            onValueChange={(event) => [
+              setEmail(event.target.value),
+              validateForm(),
+            ]}
           />
-          <MessageValidation message={formErrors.email} />
+          {formErrors.email && <MessageValidation message={formErrors.email} />}
         </div>
         <div>
           <label htmlFor="senha">Senha:</label>
           <BrInput
-            type="password"
+            required
             id="senha"
             name="senha"
             value={senha}
-            onChange={(event) => setSenha(event.target.value)}
-            required
-            danger={formErrors.nome ? true : false}
+            type="password"
+            danger={formErrors.senha ? true : false}
+            onValueChange={(event) => [
+              setSenha(event.target.value),
+              validateForm(),
+            ]}
           />
-          <MessageValidation message={formErrors.senha} />
+          {formErrors.senha && <MessageValidation message={formErrors.senha} />}
         </div>
         <div
           style={{
