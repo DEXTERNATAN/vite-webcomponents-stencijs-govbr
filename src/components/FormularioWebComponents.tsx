@@ -70,7 +70,7 @@ const FormularioWebComponentsReactHook = () => {
               borderRadius: "5px",
             }}
           >
-            Formulario enviado com sucesso!
+            Formulário enviado com sucesso!
           </div>
           <div>
             <h5>Dados enviados:</h5>
