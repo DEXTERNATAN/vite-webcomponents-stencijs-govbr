@@ -15,8 +15,8 @@
     "react-hook-form": "^7.51.1"
   },
   "devDependencies": {
-    "@govbr-ds-testing/webcomponents": "^1.22.2",
-    "@govbr-ds-testing/webcomponents-react": "^1.22.2",
+    "@govbr-ds-testing/webcomponents": "^1.22.3",
+    "@govbr-ds-testing/webcomponents-react": "^1.22.3",
     "@govbr-ds/core": "^3.5.1",
     "@types/react": "^18.2.66",
     "@types/react-dom": "^18.2.22",

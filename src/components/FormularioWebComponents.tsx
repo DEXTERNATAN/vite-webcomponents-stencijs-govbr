@@ -93,7 +93,7 @@ const FormularioWebComponentsReactHook = () => {
             danger={formErrors.nome ? true : false}
             onValueChange={(event) => [
               setNome(event.target.value),
-              validateForm(),
+              // validateForm(),
             ]}
           />
 
@@ -110,7 +110,7 @@ const FormularioWebComponentsReactHook = () => {
             danger={formErrors.email ? true : false}
             onValueChange={(event) => [
               setEmail(event.target.value),
-              validateForm(),
+              // validateForm(),
             ]}
           />
           {formErrors.email && <MessageValidation message={formErrors.email} />}
@@ -126,7 +126,7 @@ const FormularioWebComponentsReactHook = () => {
             danger={formErrors.senha ? true : false}
             onValueChange={(event) => [
               setSenha(event.target.value),
-              validateForm(),
+              // validateForm(),
             ]}
           />
           {formErrors.senha && <MessageValidation message={formErrors.senha} />}
@@ -138,16 +138,15 @@ const FormularioWebComponentsReactHook = () => {
             marginTop: "10px",
           }}
         >
-          <BrButton
-            type="reset"
-            emphasis="secondary"
-            style={{ marginRight: 10 }}
-          >
+          <BrButton type="reset" emphasis="secondary" className="mr-3">
             Cancelar
           </BrButton>
-          <BrButton type="submit" emphasis="primary" onClick={handleSubmit}>
+          <BrButton type="submit" emphasis="primary" className="mr-3">
             Enviar Formulário
           </BrButton>
+          <button type="submit" className="mr-3">
+            Enviar Formulário
+          </button>
         </div>
       </form>
     </div>
