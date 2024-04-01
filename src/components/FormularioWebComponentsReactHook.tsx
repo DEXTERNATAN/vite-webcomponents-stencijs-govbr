@@ -75,7 +75,6 @@ const FormularioWebComponentsReactHook = () => {
           <BrButton
             type="submit"
             emphasis="primary"
-            onClick={handleSubmit(onSubmit)}
           >
             Enviar Formulário
           </BrButton>
