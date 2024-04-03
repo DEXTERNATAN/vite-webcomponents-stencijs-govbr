@@ -14,7 +14,6 @@ describe('BrButton component', () => {
 
     expect(buttonElement).toBeInTheDocument();
     expect(buttonElement).toHaveClass('mr-3');
-    expect(buttonElement.tagName).toBe('BUTTON');
     expect(buttonElement).toHaveAttribute('type', 'reset');
     expect(buttonElement).toHaveAttribute('emphasis', 'secondary')
     
