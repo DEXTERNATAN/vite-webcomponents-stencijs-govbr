@@ -62,7 +62,7 @@ Essa tabela compara as principais diferenças e semelhanças entre `onChange` no
 
 ## Como Contribuir
 
-Se você deseja contribuir com melhorias ou correções para as bibliotecas @govbr-ds-testing/webcomponents e @govbr-ds-testing/webcomponents-react, siga as diretrizes de contribuição disponíveis no repositório oficial da biblioteca no GitHub.
+Se você deseja contribuir com melhorias ou correções para as bibliotecas @govbr-ds-testing/webcomponents e @govbr-ds-testing/webcomponents-react, siga as diretrizes de contribuição disponíveis no repositório oficial da biblioteca no GitLab.
 
 ## Autor
 
