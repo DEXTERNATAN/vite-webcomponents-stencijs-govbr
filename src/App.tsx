@@ -7,11 +7,12 @@ function App() {
   return (
     <>
       <div>
+        <hr />
         <h2>
-          Lista de raças
+          Formulario com react e web componentes com stenciljs e React Hook
         </h2>
         <hr />
-        <ListaRacas />
+        <FormularioWebComponents />
         <hr />
         <hr />
         <h2>Formulario com react e web componentes com stenciljs</h2>
