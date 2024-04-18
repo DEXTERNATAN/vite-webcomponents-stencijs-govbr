@@ -1,119 +1,106 @@
-import { useEffect, useState } from 'react';
-import { BrButton } from '@govbr-ds-testing/webcomponents-react';
+import { useEffect, useState } from "react";
+import {
+  BrItem,
+  BrList,
+  BrInput,
+  BrButton,
+} from "@govbr-ds-testing/webcomponents-react";
+import { Link } from "react-router-dom";
+import Dog from "../data/data";
 
 const ListaRacas = () => {
-  const [racas, setRacas] = useState('Natanael');
+  const [racas, setRacas] = useState([] as Dog[]);
+  const [filteredRacas, setFilteredRacas] = useState([] as Dog[]);
+  const [filterInputSearch, setFilterInputSearch] = useState("");
 
-  useEffect
- 
-
-  const handleSubmit = (event: any) => {
-    event.preventDefault();
-    console.log(
-      'Formulario enviado:',
-      'Nome:',
-      nome,
-      'Email:',
-      email,
-      'Senha:',
-      senha
+  const handleFilterBreeds = () => {
+    const filteredBreeds = racas.filter(({ name }: Dog) =>
+      name.includes(filterInputSearch)
     );
-    setFormSend(true);
+
+    setFilteredRacas(filteredBreeds);
   };
 
-  const handleValueChange = (event: any) => {
-    console.log('teste', event);
-  };
+  useEffect(() => {
+    const fetchRacas = async () => {
+      const response = await fetch("https://api.thedogapi.com/v1/breeds");
+      const data = await response.json();
+
+      setRacas(data);
+      setFilteredRacas(data);
+    };
+
+    fetchRacas();
+  }, []);
+
   return (
-    <div className="App">
-      {formSend === true && (
-        <>
-          {/* <br-message state="success" show-icon> */}
-          Formulario enviado com sucesso!
-          {/* </br-message>
-          <br-message state="info" show-icon> */}
-          <div>
-            <h5>Dados enviados:</h5>
-            <p>Nome: {nome}</p>
-            <p>Email: {email}</p>
-            <p>Senha: {senha}</p>
-          </div>
-          {/* </br-message> */}
-        </>
-      )}
+    <>
+      <div
+        className="col-md-12"
+        style={{ display: "flex", alignItems: "center" }}
+      >
+        <BrInput
+          required
+          id="raca"
+          type="text"
+          name="raca"
+          className="mr-2"
+          style={{ flexGrow: 3 }}
+          value={filterInputSearch}
+          placeholder="Digite o nome da raça do cachorro para pesquisar"
+          onValueChange={(event) => [setFilterInputSearch(event.target.value)]}
+        />
+        <BrButton emphasis="primary" onClick={handleFilterBreeds}>
+          Buscar
+        </BrButton>
+        <BrButton
+          emphasis="secondary"
+          onClick={() => setFilteredRacas(racas)}
+          className="ml-2"
+        >
+          Limpar
+        </BrButton>
+      </div>
 
-      <form onSubmit={handleSubmit}>
+      <div>
         <div>
-          <label htmlFor="nome">Nome:</label>
-          <input
-            type="text"
-            id="nome"
-            name="nome"
-            value={nome}
-            onChange={(event) => setNome(event.target.value)}
-            required
-          />
-        </div>
-        <div>
-          <label htmlFor="email">Email:</label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            value={email}
-            onInput={(event: any) => {
-              console.log('teste', event);
-              setEmail(event.target.value);
-            }}
-            // onChange={(event) => {
-            //   setEmail(event)
-            // }}
-            required
-          />
-        </div>
-        <div>
-          <label htmlFor="senha">Senha:</label>
-          <input
-            type="password"
-            id="senha"
-            name="senha"
-            value={senha}
-            // onChange={(event) => {
-            //   setSenha(event.target.value)
-            // }}
-            required
-          />
+          <h2>Lista de raças de cães</h2>
         </div>
         <div
           style={{
-            display: 'flex',
-            justifyContent: 'right',
-            marginTop: '10px',
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "space-evenly",
+            alignItems: "center",
+            flexWrap: "wrap",
+            marginRight: "5px",
           }}
         >
-          <BrButton
-            type="submit"
-            emphasis="secondary"
-            id="limpar"
-            style={{
-              marginRight: 10,
-            }}
-          >
-            Cancelar
-          </BrButton>
-          <BrButton
-            className="mr-1"
-            id="send"
-            type="submit"
-            emphasis="primary"
-            onClick={handleSubmit}
-          >
-            Enviar Formulário
-          </BrButton>
+          {filteredRacas.length === 0 ? (
+            <div>Nenhuma raça encontrada!</div>
+          ) : null}
+          {filteredRacas.map(({ id, name, reference_image_id }: Dog) => (
+            <Link key={id} to={`/racas/${id}`} state={{ id }}>
+              <div className="br-card">
+                <BrList
+                  className="card-content"
+                  style={{ textAlign: "center", margin: "5px" }}
+                >
+                  <img
+                    src={`https://cdn2.thedogapi.com/images/${reference_image_id}.jpg`}
+                    alt={name}
+                    width={200}
+                    height={200}
+                  />
+                  <BrItem>{name}</BrItem>
+                </BrList>
+              </div>
+            </Link>
+          ))}
         </div>
-      </form>
-    </div>
+      </div>
+    </>
   );
 };
 
-export default FormularioReact;
+export default ListaRacas;

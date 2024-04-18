@@ -1,29 +1,16 @@
 import "./App.css";
-import "@govbr-ds/core/dist/core.min.css";
-import FormularioWebComponents from "./components/FormularioWebComponents";
-import ListComponents from "./components/ListComponents";
+import { Outlet } from "react-router-dom";
+import NavBar from "./components/NavBar";
+import Footer from "./components/Footer";
 
-function App() {
+const App = () => {
   return (
-    <>
-      <div>
-        <h2>
-          Lista de raças
-        </h2>
-        <hr />
-        <ListaRacas />
-        <hr />
-        <hr />
-        <h2>Formulario com react e web componentes com stenciljs</h2>
-        <hr />
-        <FormularioWebComponents />
-        <hr />
-        <h2>Teste dos novos web componentes com stenciljs - Individualmente</h2>
-        <hr />
-        <ListComponents />
-      </div>
-    </>
+    <div className="App">
+      <NavBar />
+      <Outlet />
+      <Footer />
+    </div>
   );
-}
+};
 
 export default App;
